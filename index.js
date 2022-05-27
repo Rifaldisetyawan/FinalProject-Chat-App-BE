@@ -1,22 +1,22 @@
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
 
-// require("dotenv").config()
-// const express = require("express")
-// const cors = require("cors")
-// const db = require('./Config/db')
-// const app = express()
-// const port = process.env.PORT
+const app = express();
+require('dotenv').config();
 
-// app.use(cors())
-// app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
-// app.get('/', (req, res) => {
-//     res.send("Welcome to What's Up App")
-//   })
+mongoose.connect(process.env.MONGO_URL,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(()=>{
+    console.log('db connection success');
+}).catch((err)=>{
+    console.log(err.message);
+})
 
-//   app.listen(port,function(){
-//     console.log(`listening on port ${port}`);
-//     db.connect(function(err){
-//       if(err) throw err;
-//       console.log('database connected');
-//     })
-//   })
+const server = app.listen(process.env.PORT,()=>{
+    console.log(`server started on port ${process.env.PORT}`);
+})
