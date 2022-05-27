@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.4",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.16",
+    "socket.io": "^4.5.1"
+  },
+  "name": "server",
+  "version": "1.0.0",
+  "description": "chat app server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rifaldisetyawan/FinalProject-Chat-App-BE.git"
+  },
+  "author": "YNTKTS Tech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rifaldisetyawan/FinalProject-Chat-App-BE/issues"
+  },
+  "homepage": "https://github.com/Rifaldisetyawan/FinalProject-Chat-App-BE#readme"
+}
