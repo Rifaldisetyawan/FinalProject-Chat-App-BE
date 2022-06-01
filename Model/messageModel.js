@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const messageSchema = new mongoose.Schema(
+const MessageSchema = new mongoose.Schema(
     {
         message: {
             text: {
@@ -8,16 +8,16 @@ const messageSchema = new mongoose.Schema(
                 required: true
             },
         },
-        users: Array,
+        users:Array,
         sender: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-            required: true,
+            ref: "Users",
+            required: true
         },
     },
-    {
+    { 
         timestamps: true,
     },
 );
 
-module.exports = mongoose.model("Messages", messageSchema)
+module.exports = mongoose.model("Messages", MessageSchema)

@@ -6,7 +6,7 @@ module.exports.register = async (req, res, next) => {
         const { username, email, password } = req.body;
         const usernameCheck = await User.findOne({ username })
         if (usernameCheck)
-            return res.json({ msg: 'Username already', status: false })
+             res.json({ msg: 'Username already', status: false });
         const emailCheck = await User.findOne({ email })
         if (emailCheck)
             return res.json({ msg: 'Email already', status: false })
@@ -14,10 +14,10 @@ module.exports.register = async (req, res, next) => {
         const user = await User.create({
             username, email, password: hashedPassword
         })
-        // delete user.password
+        delete user.password
         return res.json({ status: true, user })
     } catch (ex) {
-        next(ex)
+        next(ex) 
     }
 
 }
@@ -27,12 +27,12 @@ module.exports.login = async (req, res, next) => {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
         if (!user)
-            return res.status(400).json({ msg: 'Username Not Found', status: false })
+            return res.json({ msg: 'Username Not Found', status: false })
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid)
-            return res.status(400).json({ msg: 'Password is wrong', status: false })
-        // delete user.password;
-        return res.status(200).json({ status: true, user })
+            return res.json({ msg: 'Password is wrong', status: false })
+        delete user.password;
+        return res.json({ status: true, user })
     } catch (ex) {
         next(ex)
     }
@@ -43,12 +43,12 @@ module.exports.setAvatar = async (req, res, next) => {
         const userId = req.params.id;
         const avatarImage = req.body.image;
         const userData = await User.findByIdAndUpdate(userId, {
-            isAvatarImageset: true,
-            avatarImage: '111'
+            isAvatarImageSet: true,
+            avatarImage,
         });
-        return res.status(200).json({
-            isSet: userData.isAvatarImageset,
-            image: userData.avatarImage,
+        return res.json({
+            isSet: userData.isAvatarImageSet,
+            image: userData.avatarImage
             // msg: "avatar is update"
         });
     } catch (ex) {
@@ -64,8 +64,19 @@ module.exports.getAllUsers = async (req, res, next) => {
             "avatarImage",
             "_id",
         ]);
-        return res.json(users);
+        return res.status(200).json(users);
     } catch (ex) {
         next(ex);
-    }
+    } 
 };
+
+module.exports.logOut = (req, res, next) => {
+    try {
+      if (!req.params.id) return res.json({ msg: "User id is required " });
+      onlineUsers.delete(req.params.id);
+      return res.status(200).send("Logout");
+    } catch (ex) {
+      next(ex);
+    }
+  };
+  
