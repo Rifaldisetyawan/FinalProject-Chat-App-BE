@@ -16,7 +16,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("DB Connetion Successfull");
+    console.log(`${process.env.MONGO_URL},DB Connetion Successfull`);
   })
   .catch((err) => {
     console.log(err.message);
@@ -25,7 +25,7 @@ mongoose
 app.use("/api/auth", userRoutes);
 app.use("/api/messages", messageRoutes);
 
-const server = app.listen(process.env.PORT, () =>
+const server = app.listen(process.env.PORT||5000, () =>
   console.log(`Server started on ${process.env.PORT}`)
 );
 const io = socket(server, {
