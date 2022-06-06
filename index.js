@@ -22,8 +22,8 @@ mongoose
     console.log(err.message);
   });
 
-app.use("/api/auth", userRoutes);
-app.use("/api/messages", messageRoutes);
+app.get("/api/auth", userRoutes);
+app.get("/api/messages", messageRoutes);
 
 const server = app.listen(process.env.PORT, () =>
   console.log(`Server started on ${process.env.PORT}`)
