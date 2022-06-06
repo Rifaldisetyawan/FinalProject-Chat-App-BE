@@ -6,7 +6,8 @@
     "express": "^4.17.2",
     "mongoose": "^6.2.1",
     "nodemon": "^2.0.15",
-    "socket.io": "^4.4.1"
+    "socket.io": "^4.4.1",
+    "concurrently": "^5.1.0"
   },
   "name": "server",
   "version": "1.0.0",
@@ -17,7 +18,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index",
+    "client-install":"cd chat-app && npm install",
+    "client":"cd chat-app && npm start",
+    "dev": "concurrently \" npm run server  \" \" npm run client\"",
+    "heroku-postbuild": "cd chat-app && npm install && npm run build"
   },
   "repository": {
     "type": "git",
