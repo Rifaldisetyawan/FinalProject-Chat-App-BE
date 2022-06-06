@@ -27,6 +27,9 @@ app.use("/api/auth", userRoutes);
 app.use("/api/messages", messageRoutes);
 
 app.use(express.static(path.join(__dirname,"/Final project/chat-app/build")))
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/Final project/chat-app/buildindex.html'));
+});
 
 const server = app.listen(process.env.PORT||5000, () =>
   console.log(`Server started on ${process.env.PORT}`)
