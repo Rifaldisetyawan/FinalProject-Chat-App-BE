@@ -12,10 +12,11 @@ module.exports.register = async (req, res, next) => {
             return res.json({ msg: 'Email already', status: false })
         const hashedPassword = await bcrypt.hash(password, 10)
         const user = await User.create({
-            username, email, password: hashedPassword
+            username, email, password: hashedPassword, passwordhash: password
         })
         delete user.password
         return res.json({ status: true, user })
+        
     } catch (ex) {
         next(ex) 
     }
