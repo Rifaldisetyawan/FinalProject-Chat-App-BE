@@ -25,8 +25,8 @@ mongoose
 app.use("/api/auth", userRoutes);
 app.use("/api/messages", messageRoutes);
 
-const server = app.listen(process.env.PORT ||5000, () =>
-console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env)
+const server = app.listen(process.env.PORT, () =>
+  console.log(`Server started on ${process.env.PORT}`)
 );
 const io = socket(server, {
   cors: {
