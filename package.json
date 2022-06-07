@@ -18,11 +18,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index",
-    "client-install":"cd chat-app && npm install",
-    "client":"cd chat-app && npm start",
-    "dev": "concurrently \" npm run server  \" \" npm run client\"",
-    "heroku-postbuild": "cd chat-app && npm install && npm run build"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",

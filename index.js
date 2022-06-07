@@ -25,14 +25,7 @@ mongoose
 app.use("/api/auth", userRoutes);
 app.use("/api/messages", messageRoutes);
 
-if(process.env.NODE.ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'chat-app', 'build')));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'chat-app', 'build', 'index.html'))
-  });
-  
-}
 const server = app.listen(process.env.PORT, () =>
   console.log(`Server started on ${process.env.PORT}`)
 );
