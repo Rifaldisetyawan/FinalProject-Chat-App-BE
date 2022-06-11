@@ -25,7 +25,7 @@ mongoose
 app.use("/api/auth", userRoutes);
 app.use("/api/messages", messageRoutes);
 app.get('/',function(req,res){
-  return res.send('test')
+  return res.send("Welcome To What's Up!")
 })
 
 
